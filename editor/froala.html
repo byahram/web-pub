@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala Editor</title>
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/lib/froala_editor.pkgd.min.css">
+
+    <style>
+        #wrap {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .link {
+            text-decoration: none;
+            text-align: center;
+            color: black;
+            margin: auto;
+        }
+        #froala_editor {
+            margin: 50px auto 0 auto;
+            width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <a href="https://froala.com/wysiwyg-editor/examples/" class="link">https://froala.com/wysiwyg-editor/examples/</a>
+        <div id="froala_editor"></div>
+    </div>
+
+    <script src="../assets/js/lib/jquery.min.js"></script>
+    <script src="../assets/js/lib/froala_editor.pkgd.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        });
+
+
+        // Froala Editor
+        window['editor'] = new FroalaEditor('#froala_editor', {
+            key: 'YOUR KEY',
+            imageUploadParam: 'file',
+            imageUploadURL: '/ecatalog/trend_editor',
+            imageUploadMethod: 'POST',
+            imageUploadParams: {
+                'type': 'image' // 추가 파라메터 전달
+            },
+            videoUploadParam: 'file',
+            videoUploadURL: '/ecatalog/trend_editor',
+            videoUploadMethod: 'POST',
+            videoUploadParams: {
+                'type': 'video' // 추가 파라메터 전달
+            },
+            videoResponsive: true, // 비디오 사이즈 100% 반응형
+            videoResize: false,
+            toolbarSticky: true,
+            imageDefaultWidth: 0, //이미지 기본 사이즈 제거
+            videoDefaultWidth: 0, //비디오 기본 사이즈 제거
+            imageMaxSize: 1024 * 1024 * 256,
+            videoMaxSize: 1024 * 1024 * 256,
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+                },
+
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+                },
+
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertHR'],
+                    'buttonsVisible': 4
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'print', 'spellChecker', 'selectAll', 'html', 'help'],
+                    'align': 'right',
+                    'buttonsVisible': 2
+                }
+            },
+            requestHeaders: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            events : {
+                'image.beforeUpload' : function ( images ) {
+                    // 이미지 업로드를 중지하려면 false를 반환합니다.
+                },
+                'image.uploaded' : function ( response ) {
+                    // 이미지가 서버에 업로드 되었습니다.
+                },
+                'image.inserted' : function ( $img, response ) {
+                    // 편집기에 이미지가 삽입되었습니다.
+                },
+                'image.replaced' : function ( $img, response ) {
+                    // 편집기에서 이미지가 교체되었습니다.
+                },
+                'image.error' : function ( error, response ) {
+                    // 잘못된 링크입니다.
+                    if (error.code == 1 ) {
+                        console.log('// 잘못된 링크입니다.');
+                    }
+
+                    // 업로드 응답에 링크가 없습니다.
+                    else if (error.code == 2 ) {
+                        console.log('// 업로드 응답에 링크가 없습니다.');
+                    }
+
+                    // 이미지 업로드 중 오류가 발생했습니다.
+                    else if (error.code == 3 ) {
+                        console.log('// 이미지 업로드 중 오류가 발생했습니다.');
+                    }
+
+                    // 응답 구문 분석에 실패했습니다.
+                    else if (error.code == 4 ) {
+                        console.log('// 응답 구문 분석에 실패했습니다.');
+                    }
+
+                    // 이미지가 너무 텍스트 크기입니다.
+                    else if (error.code == 5 ) {
+                        console.log('// 이미지가 너무 텍스트 크기입니다.');
+                    }
+
+                    // 잘못된 이미지 유형입니다.
+                    else  if (error.code == 6 ) {
+                        console.log('// 잘못된 이미지 유형입니다.');
+                    }
+
+                    // 이미지는 IE 8과 IE 9에서 동일한 도메인에만 업로드할 수 있습니다.
+                    else  if (error.code == 7 ) {
+                        console.log('// 응답에는 사용 가능한 경우 요청에 대한 원래 서버 응답이 포함됩니다.');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
