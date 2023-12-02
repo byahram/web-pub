@@ -1,0 +1,637 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@400;600;700&display=swap");
+/* @import url(assets/css/bg_dot.css); */
+@import url(../assets/css/bg_grid.css);
+@import url(../assets/css/reset.css);
+@import url(../assets/css/prism.css);
+
+@font-face {
+    font-family: 'DungGeunMo';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/DungGeunMo/DungGeunMo.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/DungGeunMo/DungGeunMo.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/DungGeunMo/DungGeunMo.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/DungGeunMo/DungGeunMo.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/DungGeunMo/DungGeunMo.ttf') format("truetype");
+    font-display: swap;
+}
+
+:root {
+    --color-whale: rgb(155, 176, 212);
+    --color-whale-sea: rgb(82, 96, 170);
+    --color-whale-sky: rgb(229, 242, 244);
+    --color-main-title: rgb(27, 17, 132);
+    --color-primary: #000;
+    --color-primary-alt: #ddd;
+    --color-secondary: #fff;
+
+    --font-family-primary: "Sora", sans-serif;
+    --font-family-secondary: "Inter", "Sora", sans-serif;
+}
+html {scroll-behavior: smooth;}
+
+
+
+/*************************
+        index.html
+**************************/
+.javascript {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    border: 8px solid var(--color-whale-sea);
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+}
+.javascript::before {
+    content: '';
+    width: 100%;
+    height: calc(100vh - 16px);
+    border: 8px solid var(--color-whale);
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 13px;
+}
+.javascript h1 {
+    font-size: 7vw;
+    color: var(--color-main-title);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.javascript .menu {text-align: center;}
+.javascript .menu li {display: inline;}
+.javascript .menu li a {
+    border: 1px solid var(--color-main-title);
+    color: var(--color-main-title);
+    border-radius: 50px;
+    padding: 10px 30px;
+    display: inline-block;
+    margin: 5px 3px;
+    font-size: 1.5rem;
+}
+.javascript .menu li a:hover {
+    background: var(--color-main-title);
+    color: #fff;
+}
+
+
+
+/*************************
+        #header
+**************************/
+#header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    
+    background-color: var(--color-secondary);
+    border-bottom: 4px solid;
+    width: 100%;
+}
+#header .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    text-align: left;
+}
+#header .container h1,
+#header .container h2,
+#header .container p {
+    font-size: 2rem;
+    padding: 1em 1.5em;
+    line-height: 1;
+    flex-grow: 1;
+}
+#header .container > * + * {
+    margin-top: 0;
+    border-left: 4px solid;
+}
+#header .container p a {
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid;
+}
+#header .container p a:hover {
+    border-width: 4px;
+}
+#header .container .link-github {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 0.5em 1em;
+    text-decoration: none;
+    font-size: 2rem;
+}
+#header .container .link-github svg {
+    display: flex;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.25em;
+    fill: currentColor;
+}
+
+@media (max-width: 1300px) {
+    #header .container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 3em;
+    }
+    #header .container h1, #header .container h2, #header .container p {
+        padding: 0;
+    }
+    #header .container > * + * {
+        margin-top: 1.75rem;
+        border-left: 0;
+    }
+    #header .container h1 {
+        font-family: "DungGeunMo";
+        font-size: 7rem;
+        font-weight: 700;
+    }
+    #header .container h2 {font-size: 3rem; font-weight: 550; text-align: center; line-height: 1.2;}
+    #header .container p {font-size: 2.5rem; font-weight: 200;}
+    #header p a {
+        text-decoration: none;
+        font-weight: 400;
+        border-bottom: 2px solid;
+    }
+    #header .container .link-github {
+        padding: 0;
+    }
+    #nav li.active {border-radius: 50px;}
+
+    /* isActive */
+    #header.isActive h1, #header.isActive p, #header.isActive .link-github {display: none;}
+    #header.isActive .container {padding: 1.5em;}
+    #header.isActive h2 {margin-top: 0;}
+    #nav.isActive {
+        position: fixed;
+        top: 7rem;
+        z-index: 1000;
+    }
+}
+
+
+/*******************
+        #nav
+********************/
+#nav {
+    position: fixed;
+    z-index: 100;
+    top: 10rem;
+    left: 5rem;
+    display: flex;
+    background-color: var(--color-secondary);
+    font-size: 1rem;
+    border: 4px solid var(--color-primary);
+    width: 17%;
+    margin-bottom: 0;
+}
+#nav ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+#nav li {
+    width: 100%;
+}
+#nav li.active {
+    color: var(--color-primary-alt);
+    background-color: var(--color-primary);
+}
+#nav li + li {
+    border-top: 4px solid var(--color-primary);
+}
+/* #nav li:nth-child(1n + 3) {
+    border-top: 4px solid;
+} */
+#nav li:nth-child(odd) {
+    border-right: 4px solid;
+    border-right: none;
+}
+#nav a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    line-height: 1;
+    font-size: 1.8rem;
+    padding: 1.2em;
+}
+#nav a:after {
+    font-family: var(--font-family-secondary);
+    content: "→";
+    display: block;
+    margin-left: auto;
+    padding-left: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+#nav a[href^="#"]:after {
+    content: "↴";
+}
+#nav a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+@media (max-width: 1300px) {
+    #nav {
+        width: 100%;
+        position: relative;
+        top: 27rem;
+        left: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        z-index: unset;
+    }
+    #nav ul {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    #nav ul {flex-direction: row;}
+    #nav ul:first-child {margin-top: 3rem;}
+    #nav ul:last-child {margin-bottom: 3rem;}
+    #nav li {
+        width: fit-content;
+    }
+    #nav li + li {
+        border-top: none;
+    }
+    #nav li:nth-child(1n + 3) {
+        border-top: none;
+    }
+    #nav a {
+        width: fit-content;
+        display: inline-flex;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: 3px solid var(--color-primary);
+        background-color: var(--color-secondary);
+        display: inline-flex;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        padding: 1.5rem 3rem;
+    }
+    #nav a:hover, #nav li.active a {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    }
+}
+
+
+
+/***************
+      main
+****************/
+article:first-child {
+    border: 4px dashed var(--color-primary);
+    box-shadow: none;
+    padding: 4rem 6rem;
+    margin-bottom: 5rem;
+    position: relative;
+    background: none;
+    background-color: var(--color-secondary);
+    background-position: right 5px, right 30px top 5px, 0 0;
+    background-size: 50px 50px, 50px 50px, 100% 64px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}
+article {
+    border: 4px solid var(--color-primary);
+    box-shadow: 12px 12px 0 0 var(--color-primary);
+    padding: 0rem 3rem 5rem 3rem;
+    position: relative;
+    background: repeating-radial-gradient(
+            var(--color-secondary),
+            var(--color-secondary) 6px,
+            var(--color-primary) 6px,
+            var(--color-primary) 10px,
+            transparent 0%,
+            transparent 100%
+        ),
+        repeating-radial-gradient(
+            var(--color-secondary),
+            var(--color-secondary) 6px,
+            var(--color-primary) 6px,
+            var(--color-primary) 10px,
+            transparent 0%,
+            transparent 100%
+        ),
+        linear-gradient(
+            var(--color-primary-alt),
+            var(--color-primary-alt) 60px,
+            var(--color-primary) 60px,
+            var(--color-primary) 64px
+        );
+    background-color: var(--color-secondary);
+    background-position: right 5px, right 30px top 5px, 0 0;
+    background-size: 50px 50px, 50px 50px, 100% 64px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}
+article > * + * {margin-top: 1em;}
+article > * + h1, article > * + h2, article > * + h3, article > * + h4 {margin-top: 1.5em;}
+
+#main {
+    width: 73%;
+    margin: 10rem 5rem 10rem auto;
+}
+#main article + article {margin-top: 4rem;}
+#main article ul li a {font-size: 1.8rem; line-height: 1.7;}
+#main article .container {margin-top: 3rem;}
+#main article .tag-container, #main article .btn-container {margin-top: 1rem;}
+#main article .tag-container ul, #main article .btn-container {
+    /* margin-right: 2.5rem; */
+    display: flex;
+    justify-content: flex-end;
+}
+#main article .iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;  
+    padding-top: calc(9/16 * 100%);
+
+    /* 4:3 = 75 %
+       16:9 = 56. 25 %
+       21:9 = 42.85714285714286 % */
+}
+#main article .iframe-container > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+}
+#main article .image-container {
+    position: relative;
+    width: 100%;
+    border: 2px solid black;
+}
+#main article h1 {font-size: 2.2rem; margin-top: 1.5rem;}
+#main article p {font-size: 2rem; margin-top: 4rem;}
+#main article .tag-btn-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+#main article .tag-btn-wrap .tag-container ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+#main article .tag-btn-wrap .tag-container ul li {
+    margin-right: 0.75rem;
+    display: inline-flex;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    border: 4px solid var(--color-primary);
+    background-color: var(--color-primary-alt);
+    align-items: center;
+    font-size: 1.55rem;
+    font-weight: 600;
+}
+#main article .tag-btn-wrap .tag-container ul li:before {
+    content: "";
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    border: 4px solid var(--color-primary);
+    background-color: var(--color-secondary);
+    margin-right: 0.75em;
+}
+#main article .tag-btn-wrap .tag-container ul li:last-child {margin-right: 0;}
+#main article .tag-btn-wrap .btn-container > a {
+    display: inline-block;
+    padding: 0.5em 2.3em;
+    font-size: 1.7rem;
+    font-weight: 600;
+    border: 4px solid;
+    text-decoration: none;
+    box-shadow: inset -4px -4px 0 var(--color-primary-alt);
+    margin-right: 0.75rem;
+    text-align: center;
+}
+#main article .tag-btn-wrap .btn-container > a:hover {
+   background-color: var(--color-primary);
+   box-shadow: inset -4px -4px 0 var(--color-primary);
+   color: var(--color-secondary);
+   border-color: var(--color-primary);
+}
+#main article .tag-btn-wrap .btn-container > a:last-child {margin-right: 0;}
+.result summary{
+    font-size: 16px;
+    font-weight: 500;
+    width: auto;
+    background: #f2f2f2;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 1rem 0;
+    border-radius: 5px 5px 0 0;
+    padding-left: 2rem;
+    cursor: pointer;
+}
+.result .open{display: none;}
+.result.active .open{
+    display: block;
+    background: #272822;
+    border-radius: 0 0 5px 5px;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 2rem;
+    line-height: 1.5;
+}
+.table {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding: 20px;
+    font-size: 15px;
+}
+.table table {
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+.table table th {
+    font-size: 17px;
+    padding: 10px 15px;
+    font-weight: normal;
+}
+.table table td {
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 1px solid black;
+}
+.table td[class*="_R"],
+.table td[class*="_P"] {
+    color: #fff;
+    transition: all 0.2s;
+    cursor: help;
+}
+.table td[class*="_R"]:hover,
+.table td[class*="_P"]:hover {
+    color: black;
+}
+
+@media (max-width: 1300px) {
+    #main {
+        width: 94%;
+        margin: 30rem auto 10rem auto;
+    }
+}
+
+
+ 
+/*******************
+       footer
+********************/
+#footer {
+    margin-top: 4rem;
+    width: 100%;
+    background-color: var(--color-secondary);
+    padding: 4rem;
+    border-top: 4px solid;
+    text-align: center;
+}
+#footer ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#footer ul li {
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    display: inline-flex;
+}
+#footer ul a {
+    display: flex;
+    align-items: center;
+    padding: 0.8em;
+    font-size: 1.75rem;
+    font-weight: 600;
+    border: 4px solid;
+    text-decoration: none;
+    box-shadow: inset -4px -4px 0 var(--color-primary-alt);
+}
+#footer ul a:hover {
+    background-color: var(--color-primary);
+    box-shadow: inset -4px -4px 0 var(--color-primary);
+    color: var(--color-secondary);
+    border-color: var(--color-primary);
+}
+#footer .container > * + * {
+    margin-top: 1em;
+}
+#footer .container p {font-size: 2.2rem; font-weight: 200;}
+#footer p a {
+    text-decoration: none;
+    font-weight: 550;
+    border-bottom: 2px solid;
+}
+ 
+
+ 
+/*********************
+       arrow-up
+**********************/
+.arrow-up {
+    position: fixed;
+    width: 7rem; height: 7rem;
+    bottom: 5rem; right: 5rem;
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    border: 3px solid var(--color-primary);
+    background-color: var(--color-primary-alt);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease-in;
+}
+.arrow-up.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+/**************************
+        @mediaquery
+***************************/
+/*@media (max-width: 1150px) {
+    .javascript h1 {font-size: 8rem; padding: 10px 0;}
+    .javascript .menu li a {font-size: 1.4rem;}
+    
+    #nav a {font-size: 1.4rem; margin: 0.6rem;}
+
+    #main article h1 {font-size: 2rem;}
+    #main article p {font-size: 1.7rem;}
+}
+
+@media (max-width: 850px) {
+    .javascript .menu ul:nth-child(3), .javascript .menu ul:nth-child(4) {display: none;}
+    .javascript h1 {font-size: 7rem; margin-top: 3rem;}
+    .javascript .menu {margin-top: 3rem;}
+
+    #header .container h1 {font-size: 6.5rem;}
+    #header .container h2 {font-size: 3.2rem;}
+
+    #nav a {margin: 0.5rem; padding: 0.8rem 2.5rem;}
+
+    #main article:first-child {padding: 3rem 5rem;}
+    #main article ul li a {font-size: 1.5rem;}
+    #main article h1 {font-size: 1.8rem; margin-top: 1.8rem;}
+    #main article p {font-size: 1.6rem;}
+}
+
+@media (max-width: 450px) {
+    #header .container h1 {font-size: 6rem;}
+    #header .container h2 {font-size: 2.7rem;}
+    #header .container p {font-size: 1.7rem;}
+
+    #nav a {padding: 0.8rem 2rem;}
+
+    #main article h1 {font-size: 1.8rem; margin-top: 1.7rem;}
+    #main article p {font-size: 1.5rem;}
+}*/
